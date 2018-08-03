@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="XpenceShared.Controls.NImageButton">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnTapped" />
+    </ContentView.GestureRecognizers>
+    <ContentView.Content>
+        <ContentView x:Name="InnerView" Padding="3" InputTransparent="True" >
+          <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    
+                </Grid.RowDefinitions>
+                <Image Aspect="AspectFit" x:Name="buttonImage" InputTransparent="True" 
+                   VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label x:Name="textLabel"  HorizontalOptions="Center" VerticalOptions="Center"  InputTransparent="True" FontSize="Small" Style="{StaticResource ButtonTitle}" 
+                   BackgroundColor="Transparent"  />
+
+            </Grid>
+        </ContentView>
+    </ContentView.Content>
+</ContentView>

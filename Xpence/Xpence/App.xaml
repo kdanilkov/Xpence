@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+                        xmlns:converters="clr-namespace:XpenceShared.Converters;assembly=XpenceShared"
+                        xmlns:controls="clr-namespace:XpenceShared.Controls;assembly=XpenceShared"
+                        x:Class="Xpence.App">
+    <Application.Resources>
+
+        <!-- Application resource dictionary -->
+
+        <ResourceDictionary>
+            <!-- Converters -->
+            <converters:EnumToStringConverter x:Key="EnumConverter" />
+
+            <converters:InverseBooleanConverter x:Key="InverseBoolean" />
+            <converters:DecimalToStringConverter x:Key="DecimalToColor" />
+
+            <converters:PercentToStringConverter x:Key="PercentToString" />
+
+            <!-- Colors -->
+            <Color x:Key="ViewBackgroundColor">White</Color>
+            <Color x:Key="FontAndBordersColor">#D4000000</Color>
+            <Color x:Key="TitleColor">#717171</Color>
+            <Color x:Key="SubtitleColor">#bfc0c3</Color>
+            <Color x:Key="ListSeparatorColor">Transparent</Color>
+            <Color x:Key="NButtonBackgroundColor">#3e6cb4</Color>
+            <Color x:Key="NButtonTextColor">#FFFFFF</Color>
+            <Color x:Key="NFrameBackGroundColor">#edeeef</Color>
+            <Color x:Key="NFrameOutlineColor">#dfdfdf</Color>
+            <Color x:Key="NLightGreen">#00deac</Color>
+            <Color x:Key="NLightRed">#d7a3a3</Color>
+            <Color x:Key="NLightYellow">#E8FD84</Color>
+            <Color x:Key="NLightBlue">#3994e0</Color>
+            <Color x:Key="NLightOrange">#ff7316</Color>
+            <Color x:Key="NListTitleColor">Black</Color>
+            <Color x:Key="NavbarBackgroundColor">#3994e0</Color>
+            <Color x:Key="EntryPlaceholderColor">#B7BBBE</Color>
+            <Color x:Key="EntryBorderColor">#ececec</Color>
+            <Color x:Key="PaidBillColor">#9fd46c</Color>
+            <Color x:Key="NoPaidBillColor">#50c0e6</Color>
+            <Color x:Key="PaidSavingColor">#1e77ed</Color>
+            <Color x:Key="NotPaidSavingColor">#ff7316</Color>
+            <Color x:Key="InsidePickerBackgroundColor">#FAFAFA</Color>
+            <!-- Fonts -->
+            <!-- UniNeueBoldFont -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="UniNeueBoldFont">
+                <On Platform="iOS">UniNeueBold</On>
+                <On Platform="Android">UniNeueBold-Italic.ttf#UniNeueBold</On>
+            </OnPlatform>
+            <!-- UniNeueBold-ItalicFont -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="UniNeueBold-ItalicFont">
+                <On Platform="iOS" Value="UniNeueBold-Italic" />
+                <On Platform="Android" Value="UniNeueBold-Italic.ttf#UniNeueBold-Italic" />
+            </OnPlatform>
+            <!-- UniNeueBookFont -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="UniNeueBookFont">
+                <On Platform="iOS">UniNeueBook</On>
+                <On Platform="Android">UniNeueBook.ttf#UniNeueBook</On>
+            </OnPlatform>
+            <!-- UniNeueThinFont -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="UniNeueThinFont">
+                <On Platform="iOS">UniNeueThin</On>
+                <On Platform="Android">UniNeueThin.ttf#UniNeueThin</On>
+            </OnPlatform>
+            <!-- Base  Controls Styles -->
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NButtonBackgroundColor}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            <Style TargetType="controls:NButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource NButtonBackgroundColor}" />
+                <Setter Property="TextColor" Value="{StaticResource NButtonTextColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BorderRadius" Value="20" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="20,0" />
+            </Style>
+            <Style TargetType="controls:NFrame">
+                <Setter Property="BackgroundColor" Value="{StaticResource NFrameBackGroundColor}" />
+                <Setter Property="Margin" Value="20,10" />
+                <Setter Property="HasShadow" Value="true" />
+                <Setter Property="OutlineColor" Value="{StaticResource NFrameOutlineColor}" />
+                <Setter Property="CornerRadius" Value="5" />
+
+            </Style>
+            <!-- <Style TargetType="circle:CircleImage"> -->
+            <!--     <Setter Property="Margin" Value="10" /> -->
+            <!--     <Setter Property="BorderColor" Value="{StaticResource NButtonBackgroundColor}" /> -->
+            <!--     <Setter Property="BorderThickness" Value="5" /> -->
+            <!--     <Setter Property="WidthRequest" Value="80" /> -->
+            <!--     <Setter Property="HeightRequest" Value="80" /> -->
+            <!--     <Setter Property="Aspect" Value="AspectFill" /> -->
+            <!-- </Style> -->
+            <Style TargetType="controls:NEntry">
+                <Setter Property="BorderRadius" Value="15" />
+                <Setter Property="BorderColor" Value="{StaticResource EntryBorderColor}" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBoldFont}" />
+
+                <Setter Property="PlaceholderFontFamily" Value="{StaticResource UniNeueBold-ItalicFont}" />
+
+                <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource EntryPlaceholderColor}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="PlaceholderFontSize" Value="10" />
+
+            </Style>
+            <Style TargetType="controls:NPicker">
+                <Setter Property="LabelFontFamily" Value="{StaticResource UniNeueBold-ItalicFont}" />
+
+                <Setter Property="LabelTextColor" Value="{StaticResource EntryPlaceholderColor}" />
+                <Setter Property="LabelTextSize" Value="10" />
+                <Setter Property="BorderColor" Value="{StaticResource EntryBorderColor}" />
+                <Setter Property="PickerBackground">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="iOS" Value="{StaticResource NButtonTextColor}" />
+
+                            <On Platform="Android" Value="{StaticResource InsidePickerBackgroundColor}" />
+
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="controls:NBPicker">
+                <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
+            </Style>
+            <Style x:Key="Title" TargetType="controls:NLabel">
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBookFont}" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="LineBreakMode" Value="TailTruncation" />
+            </Style>
+            <Style x:Key="MenuTitle" TargetType="controls:NLabel" BasedOn="{StaticResource Title}">
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueThinFont}" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+            <Style x:Key="Top4Title" TargetType="controls:NLabel" BasedOn="{StaticResource MenuTitle}">
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style x:Key="Top4Value" TargetType="controls:NLabel" BasedOn="{StaticResource Top4Title}">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBoldFont}" />
+            </Style>
+            <Style x:Key="BlueBigTitle" TargetType="controls:NLabel">
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBoldFont}" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="TextColor" Value="{StaticResource NButtonBackgroundColor}" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+            </Style>
+
+            <Style x:Key="SubTitle" TargetType="controls:NLabel">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource SubtitleColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBookFont}" />
+            </Style>
+            <Style x:Key="SubTitleBold" TargetType="controls:NLabel">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource SubtitleColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBoldFont}" />
+            </Style>
+            <Style x:Key="BlueTitle" TargetType="controls:NLabel">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource NButtonBackgroundColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBoldFont}" />
+            </Style>
+            <Style x:Key="ListTitle" TargetType="controls:NLabel">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource NListTitleColor}" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBoldFont}" />
+            </Style>
+            <Style x:Key="CategoryTitle" TargetType="controls:NLabel" BasedOn="{StaticResource ListTitle}">
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBookFont}" />
+            </Style>
+            <Style x:Key="ListTitleGrey" TargetType="controls:NLabel" BasedOn="{StaticResource ListTitle}">
+                <Setter Property="TextColor" Value="{StaticResource SubtitleColor}" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBookFont}" />
+            </Style>
+
+            <Style x:Key="ArrowButton" TargetType="controls:NImageButton">
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="ActionButton" TargetType="controls:NImageButton">
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0,0,10" />
+            </Style>
+            <Style x:Key="ActionButtonLeft" TargetType="controls:NImageButton" BasedOn="{StaticResource ActionButton}">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Margin" Value="10,0,10,10" />
+            </Style>
+
+            <Style x:Key="NFrameImage" TargetType="Image">
+                <Setter Property="HeightRequest" Value="110" />
+                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="BlackTitleEntry" TargetType="controls:NEntry">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="5,10,5,10" />
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBoldFont}" />
+                <Setter Property="PlaceholderFontSize" Value="9" />
+            </Style>
+            <Style x:Key="LeftToolBarButton" TargetType="controls:NImageButton">
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="Margin" Value="5,0,0,0" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+
+            <Style x:Key="AgreementText" TargetType="controls:NLabel" BasedOn="{StaticResource ListTitle}">
+                <Setter Property="FontFamily" Value="{StaticResource UniNeueBookFont}" />
+            </Style>
+
+
+            <Style x:Key="ButtonTitle" TargetType="controls:NLabel" BasedOn="{StaticResource ListTitle}">
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

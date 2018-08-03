@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:controls="clr-namespace:XpenceShared.Controls;assembly=XpenceShared"
+          x:Class="XpenceShared.Controls.OfferViewCellDroid" 
+          StyleId="none">
+
+
+    <controls:NFrame HorizontalOptions="FillAndExpand">
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+
+                <RowDefinition Height="*" />
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+
+            <controls:NLabel Grid.Row="0"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Text="{Binding Name}"
+                             Style="{StaticResource BlueTitle}"
+                            />
+
+            <controls:NLabel Grid.Row="1" 
+                             Grid.Column="0" 
+                             Grid.ColumnSpan="3" 
+                            
+                             Text="{Binding Text}"
+                             HorizontalOptions="StartAndExpand"
+                             VerticalOptions="StartAndExpand"
+                             Style="{StaticResource SubTitle}" 
+                             FontSize="Small" />
+
+            <controls:NLabel Grid.Row="2" 
+                             Grid.Column="0" 
+                             Grid.ColumnSpan="2"
+                             Grid.RowSpan="2"
+                             HorizontalTextAlignment="Start"
+                             Text="{Binding Discount}"
+                             Style="{StaticResource Title}"
+                             FontSize="Large" />
+
+
+            <controls:NLabel Grid.Row="2" 
+                             Grid.Column="2" 
+                             Text="{Binding Distance, StringFormat='{0:F2}km'}"
+                             Style="{StaticResource Title}"
+                             HorizontalTextAlignment="End"
+                             FontSize="Small"
+                             />
+
+
+            <controls:NLabel Grid.Row="3" Grid.Column="2"
+                             Text="{Binding CategoryText}"
+                             Style="{StaticResource Title}"
+                             HorizontalTextAlignment="End" 
+                             FontSize="Small"
+                             VerticalOptions="CenterAndExpand"
+                             VerticalTextAlignment="Start" />
+
+
+        </Grid>
+    </controls:NFrame>
+</ViewCell>

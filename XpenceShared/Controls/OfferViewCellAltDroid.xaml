@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            
+             xmlns:controls="clr-namespace:XpenceShared.Controls;assembly=XpenceShared"
+             x:Class="XpenceShared.Controls.OfferViewCellAltDroid"
+            StyleId="none">
+    <Grid RowSpacing="1" Margin="20,0,20,0" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"  />
+
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"
+                 Color="{StaticResource SubtitleColor}" HeightRequest="1" Margin="0,5,0,2" />
+        <controls:NColorCircle Grid.Row="1" Grid.Column="0" Radius="5"
+                                                           CircleColor="{StaticResource NLightGreen}" />
+        <controls:NLabel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding Name}"
+                                                     Style="{StaticResource BlueTitle}"  />
+        <!--<controls:NLabel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Distance"
+                                                     Style="{StaticResource CategoryTitle}" />-->
+        <controls:NLabel Grid.Row="1" Grid.Column="5"  Text="{Binding Distance, StringFormat='{0:F2}km'}" 
+                                                     HorizontalTextAlignment="End"
+                                                    Style="{StaticResource SubTitle}"
+                                                     FontSize="Micro"/>
+
+        <!--<controls:NLabel Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="2"
+                                                     Text="{Binding Category, Converter={StaticResource EnumConverter}}"
+                                                      Style="{StaticResource SubTitle}"
+                                                         HorizontalTextAlignment="End"
+                                                         HorizontalOptions="FillAndExpand"
+                                                     FontSize="Small" />-->
+        <controls:NLabel Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="2"
+                                                     Text="{Binding CategoryText}"
+                                                      Style="{StaticResource SubTitle}"
+                                                         HorizontalTextAlignment="End"
+                                                         HorizontalOptions="FillAndExpand"
+                                                     FontSize="Small" />
+
+        <controls:NLabel Grid.Row="2" Grid.Column="4"   Grid.ColumnSpan="2"
+                                                     HorizontalTextAlignment="End"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Text="{Binding Discount}" 
+                                                    Style="{StaticResource SubTitle}"
+                                                     FontSize="Large" />
+
+        <controls:NLabel Grid.Row="4"  Grid.Column="3" Grid.ColumnSpan="3"
+                                                     Text="{Binding Merchant}" 
+                                                     HorizontalTextAlignment="End"
+                                                     Style="{StaticResource SubTitle}"
+                                                         FontSize="Small" />
+
+        <controls:NLabel Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" 
+                                                     Text="{Binding Text}"
+                                                         FontSize="Small"                                                 
+                                                     HorizontalOptions="FillAndExpand" 
+                                                     VerticalOptions="StartAndExpand"
+                                                    Style="{StaticResource SubTitle}"
+                                                    
+                                                     />
+
+
+        
+    </Grid>
+
+</ViewCell>

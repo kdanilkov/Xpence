@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="XpenceShared.Controls.NNSwitch">
+	<ContentView.Content>
+        <ContentView Padding="1">
+            <Frame x:Name="outerFrame"  Padding="1" Margin="0"  HasShadow="false">
+                <Frame x:Name="innerFrame"  Margin="0" HasShadow="false"/>
+            </Frame>
+        </ContentView>     
+	</ContentView.Content>
+</ContentView>

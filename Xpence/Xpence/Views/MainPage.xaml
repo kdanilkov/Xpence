@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xpence.Views.MainPage"
+             Title="{Binding Title}">
+
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Button BackgroundColor="Beige" BorderColor="Beige" Command="{Binding LoadSampleModuleCommand}" Text="Load Sample! Module" />
+
+        <Button BackgroundColor="Beige" BorderColor="Beige"  Command="{Binding NavigateToSamplePageCommand}" Text="Navigate to Sample Page" />
+        <Button BackgroundColor="Beige" BorderColor="Beige"  Command="{Binding NavigateToLoginPageCommand}" Text="Navigate to Login" />
+
+    </StackLayout>
+
+</ContentPage>
