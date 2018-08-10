@@ -51,8 +51,8 @@ namespace Login.Utility
         private static MobileServiceClient CreateClient()
         {
 
-            SharedClient.Setup( Settings.UID,Settings.LastValidToken,Constants.AzureServerUrl);
-
+           
+            //It is initialized in the app.cs
 
             return SharedClient.CurrentClient;
 

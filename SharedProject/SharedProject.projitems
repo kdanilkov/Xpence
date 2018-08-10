@@ -18,5 +18,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Enums\Languages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\PinViewResults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\UserTitles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BaseModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BaseModelPersonal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LogData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\UserAccount.cs" />
   </ItemGroup>
 </Project>

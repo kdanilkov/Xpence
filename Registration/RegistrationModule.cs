@@ -16,7 +16,7 @@ namespace Registration
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
+            containerRegistry.RegisterForNavigation<RegistrationStartPage, RegistrationStartPageViewModel>();
         }
     }
 }

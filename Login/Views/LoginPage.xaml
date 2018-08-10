@@ -4,14 +4,17 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:controls="clr-namespace:XpenceShared.Controls;assembly=XpenceShared"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Login.Views.LoginPage">
+             x:Class="Login.Views.LoginPage"
+             BackgroundColor="{x:StaticResource ViewBackgroundColor}"
+             >
      <controls:NStackLayout Orientation="Vertical" VerticalOptions="Start"> 
      
          <Grid> 
      
-             <Grid.RowDefinitions> 
-     
-                 <RowDefinition Height="3*" /> 
+             <Grid.RowDefinitions>
+
+                <RowDefinition Height=".5*" />
+                <RowDefinition Height="3*" /> 
                  <RowDefinition Height=".5*" /> 
                  <RowDefinition Height="Auto"/> 
      
@@ -19,16 +22,16 @@
                  <RowDefinition Height=".5*" /> 
              </Grid.RowDefinitions> 
              <Grid.ColumnDefinitions> 
-                 <ColumnDefinition Width="10" /> 
+                 <ColumnDefinition Width="30" /> 
                  <ColumnDefinition Width="*" /> 
-                 <ColumnDefinition Width="10" /> 
+                 <ColumnDefinition Width="30" /> 
              </Grid.ColumnDefinitions> 
      
-             <Image Source="big_logo.jpg" Aspect="AspectFill" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/> 
+             <Image Source="luckyTailSplash.jpg" Aspect="AspectFit" VerticalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/> 
              <controls:NImageButton  HorizontalOptions="CenterAndExpand"   Command="{Binding LoginUsingService}" CommandParameter="Facebook" Image="facebook.png" 
-                                     BackgroundColor="{x:StaticResource ViewBackgroundColor}" Grid.Row="2" Grid.Column="1" /> 
-             <controls:NImageButton  HorizontalOptions="CenterAndExpand"   Command="{Binding LoginUsingService}" CommandParameter="Google" Image="google.png" 
                                      BackgroundColor="{x:StaticResource ViewBackgroundColor}" Grid.Row="3" Grid.Column="1" /> 
+             <controls:NImageButton  HorizontalOptions="CenterAndExpand"   Command="{Binding LoginUsingService}" CommandParameter="Google" Image="google.png" 
+                                     BackgroundColor="{x:StaticResource ViewBackgroundColor}" Grid.Row="4" Grid.Column="1" /> 
          </Grid> 
      </controls:NStackLayout> 
 </ContentPage>

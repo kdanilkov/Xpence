@@ -15,6 +15,7 @@ namespace Login
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<LogoutPage, LogoutPageViewModel>();
         }
     }
 }

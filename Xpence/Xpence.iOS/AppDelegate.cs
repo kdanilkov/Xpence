@@ -13,7 +13,8 @@ namespace Xpence.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    // ReSharper disable once PartialTypeWithSinglePart
+    public partial class AppDelegate : Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -25,12 +26,24 @@ namespace Xpence.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             CurrentPlatform.Init();
-            global::Xamarin.Forms.Forms.Init();
+            Xamarin.Forms.Forms.Init();
+            StartAppCenter();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);
         }
+        public void StartAppCenter()
+        {
+            Microsoft.AppCenter.AppCenter.Start(
+                "ios=f141fd35-8ede-4f1b-89a5-4ee4b6dc29d3",
+                typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Microsoft.AppCenter.Crashes.Crashes));
 
+            Microsoft.AppCenter.Crashes.Crashes.ShouldAwaitUserConfirmation = () => false;
+            Microsoft.AppCenter.Crashes.Crashes.ShouldProcessErrorReport = report => true;
+            Microsoft.AppCenter.Crashes.Crashes.SetEnabledAsync(true);
+            Microsoft.AppCenter.Analytics.Analytics.SetEnabledAsync(true);
+            //Microsoft.AppCenter.Crashes.Crashes.GenerateTestCrash();
+        }
         #region 
         //TODO move to partial class
 
@@ -43,6 +56,7 @@ namespace Xpence.iOS
         #endregion
     }
 
+    // ReSharper disable once InconsistentNaming
     public class iOSInitializer : IPlatformInitializer
     {
         public void RegisterTypes(IContainerRegistry container)

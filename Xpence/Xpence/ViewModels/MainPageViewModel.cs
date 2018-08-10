@@ -1,25 +1,23 @@
 ﻿using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Windows.Input;
+using Prism.Events;
 using Prism.Modularity;
+using XpenceShared.Base;
 
 namespace Xpence.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase, INavigatedAware
+    public class MainPageViewModel : ViewModelBase
     {
         private readonly IModuleManager _moduleManager;
-        private readonly INavigationService _navigationService;
-        public MainPageViewModel(INavigationService navigationService, IModuleManager moduleManager, IModuleCatalog moduleCatalog)
-            : base(navigationService)
+        
+        public MainPageViewModel(INavigationService navigationService,IEventAggregator eventAggregator, IModuleManager moduleManager, IModuleCatalog moduleCatalog)
+            : base(navigationService, eventAggregator)
         {
-            _navigationService = navigationService;
+            
             _moduleManager = moduleManager;
-            Title = "Main Page";
+           
 
             LoadSampleModuleCommand = new DelegateCommand(LoadSampleModule, () => !IsSampleModuleRegistered)
                 .ObservesProperty(() => IsSampleModuleRegistered);
@@ -43,7 +41,7 @@ namespace Xpence.ViewModels
 
         private void NavigateToSamplePage()
         {
-            _navigationService.NavigateAsync("ViewA?par=test");
+            NavigationService.NavigateAsync("ViewA?par=test");
             
         }
         public ICommand NavigateToLoginPageCommand { get; set; }
@@ -51,7 +49,7 @@ namespace Xpence.ViewModels
         private void NavigateToLoginPage()
         {
            
-            _navigationService.NavigateAsync("LoginPage");
+            NavigationService.NavigateAsync("LoginPage");
         }
         private void LoadSampleModule()
         {
@@ -68,7 +66,7 @@ namespace Xpence.ViewModels
         public override  void  OnNavigatedTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("title"))
-                Title = (string)parameters["title"] + " and Prism";
+                Debug.WriteLine( (string)parameters["title"] + " and Prism");
         }
 
     }

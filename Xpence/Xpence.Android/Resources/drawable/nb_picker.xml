@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:state_selected="true">
+    <layer-list>
+      <item>
+        <shape>
+          <solid android:color="@android:color/transparent" />
+        </shape>
+      </item>
+      <item android:top="@dimen/picker_image_top_margin" android:right="@dimen/picker_image_right_margin">
+        <bitmap android:gravity="center_vertical|right"
+                 android:src="@mipmap/ic_keyboard_arrow_down_grey_600_24dp" />
+      </item>
+    </layer-list>
+  </item>
+  <item>
+    <layer-list>
+      <item>
+        <shape>
+          <solid android:color="@android:color/transparent" />
+        </shape>
+      </item>
+      <item android:top="@dimen/picker_image_top_margin" android:right="@dimen/picker_image_right_margin">
+        <bitmap android:gravity="center_vertical|right"
+                 android:src="@mipmap/ic_keyboard_arrow_down_grey_600_24dp" />
+      </item>
+    </layer-list>
+  </item>
+</selector>
+

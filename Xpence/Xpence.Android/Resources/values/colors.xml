@@ -1,0 +1,14 @@
+﻿<resources>
+  <color name="primary">#2196F3</color>
+  <color name="primaryDark">#1976D2</color>
+  <color name="accent">#FFC107</color>
+  <color name="window_background">#F5F5F5</color>
+  <color name="n_entry_border">#ECECEC</color>
+  <color name="ListViewSelected">#f0f1f4</color>
+  <color name="ListViewHighlighted">#f0f1f4</color>
+  <color name="white">#FFFFFF</color>
+  <color name="n_frame_background_color">#F1F1F2</color>
+  <color name="switch_and_tabs_color">#00DFAB</color>
+  <color name="title_color">#717171</color>
+  <color name="splash_background">#FFFFFF</color>
+</resources>

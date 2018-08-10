@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Login.Config;
 using Login.Contracts;
 using Login.Utility;
 using Microsoft.WindowsAzure.MobileServices;
 using UIKit;
-using Xamarin.Forms;
+using LoginConfig = Login.Config;
+using XpenceShared.Config;
 
 
 //[assembly: Dependency(typeof(Xpence.iOS.Services.Login))]
@@ -24,15 +24,15 @@ namespace Xpence.iOS.Services
 
             var client = AzureClientUtility.GetClient();     //    new MobileServiceClient(             Constants.AzureServerUrl                );
             AppDelegate.ResumeWithUrl = url =>
-                string.Equals(url.Scheme, Constants.AzureClientSchema) && client.ResumeWithURL(url);
+                string.Equals(url.Scheme, LoginConfig.Constants.AzureClientSchema) && client.ResumeWithURL(url);
             try
             {
                 var user = await client.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,
-                    provider, Constants.AzureClientSchema);
+                    provider, LoginConfig.Constants.AzureClientSchema);
 
                 Settings.LastValidToken = user?.MobileServiceAuthenticationToken ?? string.Empty;
                 Settings.UID = user?.UserId ?? string.Empty;
-                Settings.LoginWithProvider = providerName;
+                LoginConfig.Settings.LoginWithProvider = providerName;
                 return !string.IsNullOrWhiteSpace(Settings.LastValidToken);
             
             }
@@ -50,7 +50,7 @@ namespace Xpence.iOS.Services
         {
             var client =
                 new MobileServiceClient(
-                    Constants.AzureServerUrl
+                    LoginConfig.Constants.AzureServerUrl
                 );
 
             try
@@ -61,7 +61,7 @@ namespace Xpence.iOS.Services
                 //TODO clean token in secure store
                 Settings.UID = string.Empty;
                 Settings.LastValidToken = string.Empty;
-                Settings.LoginWithProvider = string.Empty;
+                LoginConfig.Settings.LoginWithProvider = string.Empty;
 
                 ClearCookies();
             }

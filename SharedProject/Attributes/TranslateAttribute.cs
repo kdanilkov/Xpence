@@ -28,7 +28,7 @@ namespace Xpence.Attributes
 
 
         private readonly CultureInfo _ci;
-		private const string ResourceId = "Xpence.Properties.Nanny.Plc";
+		private const string ResourceId = Constants.ResourceId;
 
 
 

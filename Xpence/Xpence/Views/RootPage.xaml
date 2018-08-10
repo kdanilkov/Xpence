@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                  xmlns:pages="clr-namespace:XpenceShared.Base.Pages;assembly=XpenceShared"
+                  xmlns:controls="clr-namespace:XpenceShared.Controls;assembly=XpenceShared"
+                  xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                  xmlns:converters="clr-namespace:XpenceShared.Converters;assembly=XpenceShared"
+                  xmlns:extensions="clr-namespace:XpenceShared.Extensions;assembly=XpenceShared"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  x:Class="Xpence.Views.RootPage">
+
+    <MasterDetailPage.Master>
+        <pages:NContentPage Title="{extensions:Translate MenuPageMasterTitle}" BackgroundColor="Transparent" >
+            <!--          <ContentPage.BackgroundColor>
+              <OnPlatform x:TypeArguments="Color"
+                          Android="Transparent" iOS="Transparent" />
+          </ContentPage.BackgroundColor>
+-->
+            <ContentPage.Icon >
+                <OnPlatform iOS="ic_menu.png" x:TypeArguments="FileImageSource"/>
+            </ContentPage.Icon>
+            <ContentPage.Resources>
+                <ResourceDictionary>
+                    <converters:MenuItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+                </ResourceDictionary>
+            </ContentPage.Resources>
+            <ContentPage.Content>
+
+                <Grid >
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"  />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+
+
+
+                    <controls:NFrame HasShadow="true" Grid.Column="0" Grid.Row="1" BackgroundColor="White" Opacity="0.8" OutlineColor="Transparent"  Margin="-30,0,10,0" Padding="5">
+                        <ListView VerticalOptions ="Center" HeightRequest="400" BackgroundColor="Transparent" 
+                 
+                              SeparatorVisibility="None"
+                              Margin="5"
+                              HasUnevenRows="true"
+                              ItemsSource="{Binding MenuItems}"
+                
+
+                  >
+                            <ListView.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateCommand}"
+                                                        EventArgsConverter="{StaticResource itemTappedEventArgsConverter}" />
+                            </ListView.Behaviors>
+
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <StackLayout Padding="45,5" Spacing="15" Orientation="Horizontal"  >
+                                                <Image  Source="{Binding Icon}" HeightRequest="30" WidthRequest="30" VerticalOptions="End" />
+                                                <controls:NLabel Text="{Binding Title}" HeightRequest="30" Style="{StaticResource MenuTitle}" />
+
+                                            </StackLayout>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </controls:NFrame>
+                </Grid>
+            </ContentPage.Content>
+
+
+        </pages:NContentPage>
+    </MasterDetailPage.Master>
+    
+</MasterDetailPage>

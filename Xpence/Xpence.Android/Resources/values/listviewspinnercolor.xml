@@ -1,0 +1,6 @@
+﻿<resources>
+  <color name="red">#FF0000</color>
+  <array name="SwipeRefreshColors">
+    <item>@color/red</item>
+  </array>
+</resources>

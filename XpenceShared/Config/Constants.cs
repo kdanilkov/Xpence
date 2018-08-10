@@ -2,6 +2,7 @@
 {
     public static class Constants
     {
-        public static string DbFileName => @"proffy.db";
+        public const string DbFileName = @"proffy.db";
+        public  const  string ResourceId = @"Xpence.Texts";
     }
 }

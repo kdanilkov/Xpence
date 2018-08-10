@@ -19,7 +19,7 @@ namespace Login.ViewModels
         public LoginPageViewModel(IEventAggregator ea, INavigationService navigationService, ILogin login) : base(navigationService, ea)
         {
 
-            LoginUsingService = NannyDelegateCommand<string>(async (provider) => await Login(provider));
+            LoginUsingService = NDelegateCommand<string>(async (provider) => await Login(provider));
             _login = login;
         }
 
@@ -31,14 +31,14 @@ namespace Login.ViewModels
 
             var result = await _login.LoginUserAsync(provider);
 
-            if (!string.IsNullOrEmpty(Settings.LastValidToken))
+            if (!string.IsNullOrEmpty(XpenceShared.Config.Settings.LastValidToken))
             {
                 //we don't need pin immediatly after login
                 Settings.PinWasEntered = DateTime.UtcNow;
                 // await base.Navigate(NavigationMap.EntryPoint);
-                // await Navigate(NavigationMap.OnStartRoutingPage);
+                 await Navigate(@"http://myapp.com/NNavigationPage/OnStartRoutingPage");
 
-                await NavigationService.GoBackAsync();
+
             }
 
 

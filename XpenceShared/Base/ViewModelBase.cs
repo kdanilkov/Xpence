@@ -8,12 +8,13 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using Xamarin.Forms;
 using XpenceShared.Events;
+using XpenceShared.Utility;
 
 namespace XpenceShared.Base
 {
     public abstract class ViewModelBase : BindableBase, INavigationAware
     {
-        protected DelegateCommand<string> NavigateCommand => new DelegateCommand<string>(async (url)=>await Navigate(url));
+        public DelegateCommand<string> NavigateCommand => new DelegateCommand<string>(async (url)=>await Navigate(url));
 
         protected DelegateCommand<string> NavigateModalCommand => new DelegateCommand<string>(async (url) => await Navigate(url,true));
 
@@ -44,14 +45,16 @@ namespace XpenceShared.Base
         {
             return  Task.Run(() => Device.BeginInvokeOnMainThread(async () =>
             {
-                var navigateAsync = NavigationService?.NavigateAsync(name,parameters: navigationParameters, useModalNavigation:modal, animated: false);
+
+               var  nameExtracted = ModulesInitializer.ExtractModuleFromUrl(name);
+                var navigateAsync = NavigationService?.NavigateAsync(nameExtracted, parameters: navigationParameters, useModalNavigation:modal, animated: false);
                 if (navigateAsync != null)
                     await navigateAsync;
             }));
 
            // return NavigationService?.NavigateAsync(name, animated: false);
         }
-        public  DelegateCommand ShowMenuCommand => NannyDelegateCommand(async () =>
+        public  DelegateCommand ShowMenuCommand => NDelegateCommand(async () =>
         {
             await Task.CompletedTask.ConfigureAwait(false);
             Ea?.GetEvent<ShowMenuEvent>().Publish(true);
@@ -79,7 +82,7 @@ namespace XpenceShared.Base
             
         }
         private DelegateCommand _refresh;
-        public DelegateCommand Refresh => _refresh ?? (_refresh = NannyDelegateCommand(async () =>
+        public DelegateCommand Refresh => _refresh ?? (_refresh = NDelegateCommand(async () =>
         {
             await RefreshData();
         }));
@@ -93,7 +96,7 @@ namespace XpenceShared.Base
         }
 
 
-        protected DelegateCommand<T> NannyDelegateCommand<T>(Func<T, Task> origin)
+        protected DelegateCommand<T> NDelegateCommand<T>(Func<T, Task> origin)
         {
             var result = new DelegateCommand<T>(async x =>
                 {
@@ -111,7 +114,7 @@ namespace XpenceShared.Base
                     {
 
                         var message =
-                            $"{nameof(NannyDelegateCommand)} {nameof(origin)} {x.ToString()} {methodname} Failed with exception: {e.Message}";
+                            $"{nameof(NDelegateCommand)} {nameof(origin)} {x.ToString()} {methodname} Failed with exception: {e.Message}";
                        // Helper.InsightsLog.UserLogTrack($"CommandError {methodname}", methodname, message);
                        
                         Debug.WriteLine(message);
@@ -127,7 +130,7 @@ namespace XpenceShared.Base
         }
 
 
-        protected DelegateCommand NannyDelegateCommand(Func<Task> origin)
+        protected DelegateCommand NDelegateCommand(Func<Task> origin)
         {
             var methodname = origin.GetMethodInfo().ToString();
             var result = new DelegateCommand(async () =>
@@ -144,7 +147,7 @@ namespace XpenceShared.Base
                 catch (InvalidOperationException e)
                 {
                     var message =
-                        $"{nameof(NannyDelegateCommand)} {nameof(origin)} {methodname} Failed with exception: {e.Message}";
+                        $"{nameof(NDelegateCommand)} {nameof(origin)} {methodname} Failed with exception: {e.Message}";
                    // Helper.InsightsLog.UserLogTrack($"CommandError {methodname}",methodname, message);
                    
                     Debug.WriteLine(message);
@@ -168,5 +171,7 @@ namespace XpenceShared.Base
         {
             return !IsBusy;
         }
+
+        
     }
 }

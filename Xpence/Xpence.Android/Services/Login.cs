@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Login.Config;
+using XpenceShared.Config;
+using LoginConfig =Login.Config;
 using Login.Contracts;
 using Login.Utility;
 using Microsoft.WindowsAzure.MobileServices;
-using Xamarin.Forms;
 
 //[assembly: Dependency(typeof(Xpence.Droid.Services.Login))]
 
@@ -32,11 +32,11 @@ namespace Xpence.Droid.Services
             try
             {
                 
-                var user = await client.LoginAsync(context, provider, Constants.AzureClientSchema);
+                var user = await client.LoginAsync(context, provider, LoginConfig.Constants.AzureClientSchema);
                 
                 Settings.LastValidToken = user?.MobileServiceAuthenticationToken ?? string.Empty;
                 Settings.UID = user?.UserId ?? string.Empty;
-                Settings.LoginWithProvider = providerName;
+                LoginConfig.Settings.LoginWithProvider = providerName;
                 return !string.IsNullOrWhiteSpace(Settings.LastValidToken);
 
             }
@@ -52,7 +52,7 @@ namespace Xpence.Droid.Services
         {
             var client =
                 new MobileServiceClient(
-                    Constants.AzureServerUrl
+                    LoginConfig.Constants.AzureServerUrl
                 );
 
             try
@@ -64,7 +64,7 @@ namespace Xpence.Droid.Services
                 //TODO clean token in secure store
                 Settings.UID = string.Empty;
                 Settings.LastValidToken = string.Empty;
-                Settings.LoginWithProvider = string.Empty;
+                LoginConfig.Settings.LoginWithProvider = string.Empty;
                 
                 //  ClearCookies();
             }

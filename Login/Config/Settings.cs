@@ -20,12 +20,7 @@ namespace Login.Config
 
        
         
-        public static bool UseCloud
-        {
-            get => bool.Parse(AppSettings.GetValueOrDefault(nameof(UseCloud), bool.TrueString));
-
-            set => AppSettings.AddOrUpdateValue(nameof(UseCloud), value.ToString());
-        }
+        
         #endregion
 
         #region Authentication
@@ -64,52 +59,19 @@ namespace Login.Config
             set => AppSettings.AddOrUpdateValue(nameof(LoginWithProvider), value);
         }
 
-        public static string LastValidToken
-        {
-            get => AppSettings.GetValueOrDefault(nameof(LastValidToken), string.Empty);
-
-            set => AppSettings.AddOrUpdateValue(nameof(LastValidToken), value);
-        }
-        public static string UID
-        {
-            get => AppSettings.GetValueOrDefault(nameof(UID), string.Empty);
-
-            set => AppSettings.AddOrUpdateValue(nameof(UID), value);
-        }
+        
         #endregion
 
 
-        #region Insights, monitoring, log etc.
-
-        /// <summary>
-        /// Log information to Xamarin insights cloud
-        /// </summary>
-        public static bool AllowInsightsLog
-        {
-            get => bool.Parse(AppSettings.GetValueOrDefault(nameof(AllowInsightsLog), bool.TrueString));
-
-            set => AppSettings.AddOrUpdateValue(nameof(AllowInsightsLog), value.ToString());
-        }
-        #endregion
+      
 
         #region Application settings
 
 
-        //wizard
-        public static bool InitialWizardRequired
-        {
-            get => bool.Parse(AppSettings.GetValueOrDefault(nameof(InitialWizardRequired), bool.TrueString));
-
-            set => AppSettings.AddOrUpdateValue(nameof(InitialWizardRequired), value.ToString());
-        }
+       
 
 
-        public static bool WorkOnlyDisconnected
-        {
-            get => bool.Parse(AppSettings.GetValueOrDefault(nameof(WorkOnlyDisconnected), bool.FalseString));
-
-            set => AppSettings.AddOrUpdateValue(nameof(WorkOnlyDisconnected), value.ToString());
-        }
+       
 
         // Settings Page
         public static bool ApplicationUsePin
@@ -124,54 +86,12 @@ namespace Login.Config
             set => AppSettings.AddOrUpdateValue(nameof(ApplicationPin), value);
         }
 
-        public static bool ApplicationStoreProfileOnServer
-        {
-            get => AppSettings.GetValueOrDefault(nameof(ApplicationStoreProfileOnServer), false);
-            set => AppSettings.AddOrUpdateValue(nameof(ApplicationStoreProfileOnServer), value);
-        }
-
-        public static bool ApplicationAgreeToGetPromotions
-        {
-            get => AppSettings.GetValueOrDefault(nameof(ApplicationAgreeToGetPromotions), false);
-            set => AppSettings.AddOrUpdateValue(nameof(ApplicationAgreeToGetPromotions), value);
-        }
-
-        public static bool ApplicationSubscribeToNotifications
-        {
-            get => AppSettings.GetValueOrDefault(nameof(ApplicationSubscribeToNotifications), false);
-            set => AppSettings.AddOrUpdateValue(nameof(ApplicationSubscribeToNotifications), value);
-        }
-
-        public static bool ApplicationAgreeToCollectAppStatistics
-        {
-            get => AppSettings.GetValueOrDefault(nameof(ApplicationAgreeToCollectAppStatistics), false);
-            set => AppSettings.AddOrUpdateValue(nameof(ApplicationAgreeToCollectAppStatistics), value);
-        }
-
-        public static bool ApplicationAgreeToSendAppErrorsToTheCloud
-        {
-            get => AppSettings.GetValueOrDefault(nameof(ApplicationAgreeToSendAppErrorsToTheCloud), false);
-            set => AppSettings.AddOrUpdateValue(nameof(ApplicationAgreeToSendAppErrorsToTheCloud), value);
-        }
+        
 
 
         #endregion
 
-        #region Technical settings
-        public static bool SyncOnStart
-        {
-            get => bool.Parse(AppSettings.GetValueOrDefault(nameof(SyncOnStart), bool.TrueString));
-
-            set => AppSettings.AddOrUpdateValue(nameof(SyncOnStart), value.ToString());
-        }
-        public static bool SyncOnResume
-        {
-            get => bool.Parse(AppSettings.GetValueOrDefault(nameof(SyncOnResume), bool.TrueString));
-
-            set => AppSettings.AddOrUpdateValue(nameof(SyncOnResume), value.ToString());
-        }
-
-        #endregion
+       
 
         #region User data settings
         public static string UserPrefix

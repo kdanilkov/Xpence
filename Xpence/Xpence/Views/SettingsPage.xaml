@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:NContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:pages="clr-namespace:XpenceShared.Base.Pages;assembly=XpenceShared"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Xpence.Views.SettingsPage">
+  
+</pages:NContentPage>

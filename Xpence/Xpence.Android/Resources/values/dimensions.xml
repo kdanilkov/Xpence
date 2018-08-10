@@ -1,0 +1,7 @@
+﻿<resources>
+  <dimen name="n_entry_corners_radius">50dp</dimen>
+  <dimen name="n_frame_corners_radius">10dp</dimen>
+  <dimen name="tabs_indicator_area_height">60dp</dimen>
+  <dimen name="picker_image_top_margin">4dp</dimen>
+  <dimen name="picker_image_right_margin">10dp</dimen>
+</resources>

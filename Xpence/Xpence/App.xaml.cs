@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define  DEVELOPMENT_INIT
+using System;
 using System.Linq;
 using Prism;
 using Prism.Ioc;
@@ -10,17 +11,22 @@ using Prism.DryIoc;
 using Prism.Modularity;
 using Registration;
 using Login;
+using Prism.Navigation;
+using Xpence.Utility;
+using XpenceShared.Base.Pages;
+using XpenceShared.Contracts;
+using XpenceShared.Db;
+using XpenceShared.Repositories;
+using XpenceShared.Utility;
+using XpenceConfig= XpenceShared.Config;
+using LoginConfig=Login.Config;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Xpence
 {
+
     public partial class App : PrismApplication
     {
-        /* 
-         * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
-         * This imposes a limitation in which the App class must have a default constructor. 
-         * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
-         */
         public App() : this(null)
         {
 #if DEBUG
@@ -38,26 +44,61 @@ namespace Xpence
         protected override async void OnInitialized()
         {
             InitializeComponent();
+#if DEVELOPMENT_INIT
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            // Settings.InitialWizardRequired = true;
+            XpenceConfig.Settings.WorkOnlyDisconnected = true;
+            LoginConfig.Settings.UseScreenLockPin = false;
+            LoginConfig.Settings.PinErrorCount = 3;// the first error moves to login
+            XpenceConfig.Settings.SyncOnResume = false;
+            XpenceConfig.Settings.SyncOnStart = false;
+            // check enum picker translation
+            XpenceConfig.Settings.SelectedCulture = new System.Globalization.CultureInfo("en");
+
+#endif
+            SharedClient.Setup(XpenceConfig.Settings.UID, XpenceConfig.Settings.LastValidToken, LoginConfig.Constants.AzureServerUrl);
+            await Store.InitStore(SharedClient.CurrentClient);
+
+
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                //TODO when we will have resources, use the resource file name
+                Texts.Culture = ci;
+                DependencyService.Get<ILocalize>().SetLocale(ci);
+            }
+
+            await NavigationService.NavigateAsync(NavigationMap.OnStartRoutingPage, null, null);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<NNavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<RootPage>();
+            containerRegistry.RegisterForNavigation<SettingsPage>();
+            containerRegistry.RegisterForNavigation<OnStartRoutingPage>();
+            containerRegistry.RegisterForNavigation<OnStartNotificationPage>();
+
+
+            containerRegistry.RegisterSingleton<ILogDataRepository, LogDataRepository>();
+            containerRegistry.RegisterSingleton<IItemManagerWrapper, ItemManagerWrapper>();
+            containerRegistry.RegisterSingleton<IUserAccountRepository, UserAccountRepository>();
+
+
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             base.ConfigureModuleCatalog(moduleCatalog);
+            ModulesInitializer.ModuleCatalog = moduleCatalog;
 
             Type registrationModuleType = typeof(RegistrationModule);
             moduleCatalog.AddModule(new ModuleInfo(registrationModuleType, registrationModuleType.Name,InitializationMode.OnDemand));
 
             Type loginModuleType = typeof(LoginModule);
             moduleCatalog.AddModule(new ModuleInfo(loginModuleType, loginModuleType.Name, InitializationMode.OnDemand));
-
+           
 
         }
     }
