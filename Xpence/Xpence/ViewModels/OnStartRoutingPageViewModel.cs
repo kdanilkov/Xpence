@@ -9,6 +9,7 @@ using Xpence.Enums;
 using Xpence.Utility;
 using XpenceShared.Base;
 using XpenceShared.Contracts;
+using XpenceShared.Db;
 using XpenceShared.Utility;
 using XpenceConfig = XpenceShared.Config;
 using LoginConfig = Login.Config;
@@ -43,9 +44,10 @@ namespace Xpence.ViewModels
                 
 
                 var source = navigationParameters.ContainsKey(LoginConfig.Constants.NavigationSourceKey) ? navigationParameters[LoginConfig.Constants.NavigationSourceKey].ToString() : string.Empty;
-               
 
 
+                SharedClient.Setup(XpenceConfig.Settings.UID, XpenceConfig.Settings.LastValidToken, LoginConfig.Constants.AzureServerUrl);
+                await Store.InitStore(SharedClient.CurrentClient).ConfigureAwait(false);
 
 
                 //user can disable cloud synchronization

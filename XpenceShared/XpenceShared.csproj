@@ -23,6 +23,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.8.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.8.0" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.2" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.396" />

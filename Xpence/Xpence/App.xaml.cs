@@ -56,8 +56,7 @@ namespace Xpence
             XpenceConfig.Settings.SelectedCulture = new System.Globalization.CultureInfo("en");
 
 #endif
-            SharedClient.Setup(XpenceConfig.Settings.UID, XpenceConfig.Settings.LastValidToken, LoginConfig.Constants.AzureServerUrl);
-            await Store.InitStore(SharedClient.CurrentClient);
+           
 
 
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)

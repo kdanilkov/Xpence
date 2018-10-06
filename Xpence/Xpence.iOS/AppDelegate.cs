@@ -28,6 +28,11 @@ namespace Xpence.iOS
             CurrentPlatform.Init();
             Xamarin.Forms.Forms.Init();
             StartAppCenter();
+            UIColor accentColor = UIColor.Gray;
+            UINavigationBar.Appearance.TintColor = accentColor;
+           // UINavigationBar.Appearance.BarTintColor = accentColor;
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() { TextColor = accentColor });
+           
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

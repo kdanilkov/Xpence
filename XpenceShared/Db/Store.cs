@@ -3,33 +3,53 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using XpenceShared.Config;
+using XpenceShared.Models;
 using XpenceShared.Utility;
 
 namespace XpenceShared.Db
 {
     public static class Store
     {
+        private static bool _databaseInitialized;
+
         public static async Task InitStore(MobileServiceClient client)
         {
             try
             {
-               
+
+                if (_databaseInitialized)
+                {
+                    return;
+                }
+
                 var store = new MobileServiceSQLiteStore(Constants.DbFileName);
 
-                
 
 
 
-              // store.DefineTable<UserAccount>(); //INIT all data tables here
-                
+
+                 store.DefineTable<UserAccount>(); //INIT all data tables here
+
 
 
 
                 //Initializes the SyncContext using the default IMobileServiceSyncHandler.
-                var initializeAsync = SharedClient.CurrentClient?.SyncContext.InitializeAsync(store);
-                if (initializeAsync != null) await initializeAsync;
+                var initializeAsync = SharedClient.CurrentClient?.SyncContext. InitializeAsync(store);
+                if (initializeAsync != null)
+                {
+                    try
+                    {
+                      await  initializeAsync;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                   
+                }
 
-
+               
 
 #if FAKEDATA
                 if (Settings.FirstRun)
@@ -125,6 +145,7 @@ namespace XpenceShared.Db
                 }
 
                 Settings.FirstRun = false;
+                _databaseInitialized = true;
 
             }
             catch (Exception e)
